@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -11,7 +13,7 @@ const LocalStrategy = require('passport-local');
 // const MongoDBStore = require('connect-mongo');
 
 
-const dbUrl = 'mongodb+srv://arpitkandwal2004:2iQnezsBKPIB5rFk@cluster0.grqudlp.mongodb.net/?retryWrites=true&w=majority';
+const dbUrl = process.env.MONGO_URL;
 mongoose.set('strictQuery','false');
 mongoose.connect(dbUrl);
 
@@ -23,6 +25,7 @@ db.once('open', function () {
 });
 
 const app = express();
+const PORT = process.env.PORT || 3000
 
 app.engine('ejs',ejsMate);
 app.set('view engine','ejs');
@@ -118,6 +121,7 @@ app.get('/logout', (req,res,next) => {
 })
 
 
-app.listen(3000,()=>{
+
+app.listen(PORT,()=>{
     console.log("Listening on Port 3000!");
 })
