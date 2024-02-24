@@ -13,7 +13,7 @@ const LocalStrategy = require('passport-local');
 // const MongoDBStore = require('connect-mongo');
 
 
-const dbUrl = 'mongodb+srv://arpitkandwal2004:2iQnezsBKPIB5rFk@cluster0.grqudlp.mongodb.net/?retryWrites=true&w=majority';
+const dbUrl = 'mongodb+srv://user2004:newuser@cluster0.grqudlp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.set('strictQuery','false');
 mongoose.connect(dbUrl);
 
