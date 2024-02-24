@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -10,32 +8,36 @@ const flash = require('connect-flash');
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const MongoDBStore = require('connect-mongodb-session')(session);
+const MongoStore = require('connect-mongo');
 
 const app = express();
 const port =  3000;
 
-const dbUrl = 'mongodb+srv://user2004:newuser@cluster0.grqudlp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-mongoose.set('strictQuery','false');
-mongoose.connect(dbUrl);
+const dbUrl = 'mongodb+srv://user2004:newuser@cluster0.grqudlp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'; // Replace with your actual MongoDB URI
 
-const  db = mongoose.connection;
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-// we will wait till mongo is ready before letting the http handler query users:
 db.once('open', function () {
     console.log('Running');
 });
 
-const store = new MongoDBStore({
-    uri: dbUrl,
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
     collection: 'sessions',
-    expires: 1000 * 60 * 60 * 24, // Set session expiration time (optional)
-    connectionOptions: {}, // MongoDB connection options (optional)
-  });
+    ttl: 24 * 60 * 60, // Set session TTL (optional)
+});
 
-  store.on('error', (error) => {
-    console.error(error);
-  });
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    store: store,
+}));
+
+// Rest of your code...
+
 
 
 app.engine('ejs',ejsMate);
