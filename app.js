@@ -13,7 +13,7 @@ const LocalStrategy = require('passport-local');
 // const MongoDBStore = require('connect-mongo');
 
 
-const dbUrl = process.env.MONGO_URL;
+const dbUrl = 'mongodb+srv://arpitkandwal2004:2iQnezsBKPIB5rFk@cluster0.grqudlp.mongodb.net/?retryWrites=true&w=majority';
 mongoose.set('strictQuery','false');
 mongoose.connect(dbUrl);
 
@@ -25,7 +25,7 @@ db.once('open', function () {
 });
 
 const app = express();
-const PORT = process.env.PORT || 3000
+const port =  3000;
 
 app.engine('ejs',ejsMate);
 app.set('view engine','ejs');
@@ -122,6 +122,6 @@ app.get('/logout', (req,res,next) => {
 
 
 
-app.listen(PORT,()=>{
+app.listen(process.env.PORT || port,()=>{
     console.log("Listening on Port 3000!");
 })
