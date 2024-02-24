@@ -1,0 +1,44 @@
+<% layout('layouts/boilerplate')%>
+<style>
+    .welcome-section {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .welcome-heading {
+        font-size: 2.5em;
+        color: #007BFF; /* Bootstrap primary color */
+    }
+
+    .subheading {
+        margin-top: 10px;
+        font-size: 1.5em;
+        color: #6C757D; /* Bootstrap secondary color */
+    }
+
+    /* Custom style for the Sign In button */
+    .signin-button {
+        margin-top: 20px;
+    }
+
+    p{
+        text-align: center;
+        color: #007BFF;
+        font-size: 2.5em;
+        margin-top: 5%;
+    }
+
+</style>
+
+<% if (currentUser) { %>
+    <p>Hello, <%= currentUser.username %>
+        <br>
+        Stay Tuned! New Things are Coming!</p>
+<% } else { %>
+    <div class="container welcome-section">
+        <h1 class="welcome-heading">Welcome Aboard New User!</h1>
+        <p class="subheading">Sign in to continue your journey</p>
+        <a href="/login" class="btn btn-primary signin-button">Sign In</a>
+
+    </div>
+<% } %>

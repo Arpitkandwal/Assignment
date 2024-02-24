@@ -1,0 +1,82 @@
+<% layout('layouts/boilerplate')%>
+    <style>
+        .gradient-custom-2 {
+            /* fallback for old browsers */
+            background: #fccb90;
+
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, #cfbbac, #d67074, #c77997, #bc63a2);
+        }
+
+        @media (min-width: 768px) {
+            .gradient-form {
+                height: 100vh !important;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .gradient-custom-2 {
+                border-top-right-radius: .3rem;
+                border-bottom-right-radius: .3rem;
+            }
+        }
+        img {
+            height: 90px;
+        }
+    </style>
+    <section class="row mb-5" style="background-color: #eee;">
+        <div class="container py-5 h-100 ">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                    <div class="card rounded-3 text-black">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="card-body p-md-5 mx-md-4">
+
+                                    <div class="text-center">
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYlavNAIicWgR2N1CnvRUoUrh4tr8DO-AllA&usqp=CAU">
+                                        <h4 class="mt-1 mb-5 pb-1">Welcome aboard!</h4>
+                                    </div>
+
+                                    <form action="/login" method="POST" class="validated-form" novalidate>
+                                      <p>Please login to your account</p>
+                                  
+                                      <div class="form-outline mb-4">
+                                          <label class="form-label" for="username">Username</label>
+                                        <input type="text" id="username" name="username" class="form-control" required>
+                                        <div class="valid-feedback">
+                                          Looks good!
+                                        </div>
+                                      </div>
+                                      <div class="form-outline mb-4">
+                                          <label class="form-label" for="password">Password</label>
+                                        <input type="password" id="password" class="form-control" name="password" required>
+                                        <div class="valid-feedback">
+                                          Looks good!
+                                        </div>
+                                      </div>
+                                      <div class="d-flex align-items-center justify-content-center pb-4">
+                                      <button  class="btn btn-outline-success">Login</button>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center pb-4">
+                                      <p class="mb-0 me-2">Don't have an account </p>
+                                      <a href="/register"><button type="button" class="btn btn-outline-danger">Register</button></a>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                    <h4 class="mb-4">We are more than just a company</h4>
+                                    <p class="small mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur debitis voluptatibus aut a quis, quod tenetur delectus labore minus necessitatibus distinctio dolorem amet eligendi deleniti fuga voluptates? Quaerat, temporibus libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. In, itaque id obcaecati possimus commodi, accusantium ut ipsum, ipsa eos velit nesciunt architecto recusandae necessitatibus eveniet quia atque voluptatum quasi nam.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
