@@ -10,8 +10,10 @@ const flash = require('connect-flash');
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-// const MongoDBStore = require('connect-mongo');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
+const app = express();
+const port =  3000;
 
 const dbUrl = 'mongodb+srv://user2004:newuser@cluster0.grqudlp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.set('strictQuery','false');
@@ -24,8 +26,17 @@ db.once('open', function () {
     console.log('Running');
 });
 
-const app = express();
-const port =  3000;
+const store = new MongoDBStore({
+    uri: dbUrl,
+    collection: 'sessions',
+    expires: 1000 * 60 * 60 * 24, // Set session expiration time (optional)
+    connectionOptions: {}, // MongoDB connection options (optional)
+  });
+
+  store.on('error', (error) => {
+    console.error(error);
+  });
+
 
 app.engine('ejs',ejsMate);
 app.set('view engine','ejs');
@@ -35,6 +46,7 @@ app.use(methodOverride('_method'));
 
 
 const sessionConfig = {
+    store,
     secret:'thisshouldbeabettersecret',
     resave:false,
     saveUninitialized:true,
